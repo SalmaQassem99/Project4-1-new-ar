@@ -12,7 +12,6 @@ const iconsArr = [...arrows, pauseButton];
 const cards = document.querySelectorAll(".game-card .card-wrapper");
 const icons = document.querySelectorAll(`.card-icon`);
 const soundIcons = document.querySelectorAll(".card-icon.sound");
-const recordIcons = document.querySelectorAll(".card-icon.speak");
 const successModal = document.querySelector(".success-wrapper");
 const flipAudio = document.querySelector("#flip-audio");
 const flipBackAudio = document.querySelector("#flip-back-audio");
@@ -115,20 +114,6 @@ soundIcons.forEach((icon) => {
     });
   });
 });
-recordIcons.forEach((icon) => {
-  icon.addEventListener("click", (e) => {
-    e.preventDefault();
-  });
-  icon.addEventListener("pointerdown", () => {
-    icon.classList.add("animate");
-    icon.addEventListener("pointerup", () => {
-      icon.classList.remove("animate");
-    });
-    icon.addEventListener("pointerout", () => {
-      icon.classList.remove("animate");
-    });
-  });
-});
 document.addEventListener("mousemove", resetTimer);
 document.addEventListener("touchstart", resetTimer);
 document.querySelector(".show-success").addEventListener("click", () => {
@@ -143,31 +128,6 @@ document.querySelector(".show-success").addEventListener("click", () => {
     document.querySelector(`audio[id="success"]`).play();
   }, 500);
 });
-/*successModal.addEventListener("animationend", () => {
-  successModal.classList.remove("show");
-  successModal.classList.remove("hide");
-});
-const addCloseAnimation = () => {
-  closeButton.classList.add("animate");
-  closeButton.addEventListener("animationend", () => {
-    closeButton.classList.remove("animate");
-  });
-  successModal.classList.add("hide");
-  successModal.style.visibility = "hidden";
-  overlay.classList.remove("show");
-};
-document.addEventListener("click", function (event) {
-  const isVisible =
-    window.getComputedStyle(successModal).visibility === "visible";
-  var isClickInside =
-    successModal.contains(event.target) || event.target === closeButton;
-  if (!isClickInside && isVisible) {
-    addCloseAnimation();
-  }
-});
-closeButton.addEventListener("click", () => {
-  addCloseAnimation();
-});*/
 const checkScreen = () => {
   const isPortrait = window.matchMedia("(orientation: portrait)").matches;
   const isMobile = window.innerWidth < 768 && isPortrait;
